@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Drive</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f5f6fa;
+}
+header{
+    background:#1b365d;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+header h1{
+    margin:0;
+    font-size:22px;
+}
+header a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+    font-weight:bold;
+}
+.container{
+    max-width:800px;
+    margin:40px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+    box-sizing: border-box;
+}
+textarea{
+    resize:vertical;
+    height:80px;
+}
+button{
+    margin-top:25px;
+    width:100%;
+    padding:12px;
+    background:#1b365d;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor: pointer;
+}
+button:hover{
+    background:#153050;
+}
+.branch-box{
+    display:flex;
+    gap:19px;
+    margin-top:10px;
+}
+.branch-box label{
+    display:flex;
+    font-weight:normal;
+    margin:0;
+    align-items:center;
+}
+.branch-box input[type="checkbox"]{
+    margin-right:6px;
+    width:auto;
+    }
+footer{
+    background:#1b365d;
+    color:white;
+    text-align:center;
+    padding:12px;
+    margin-top:40px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>Smart Career - Admin</h1>
+    <div>
+        <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        <a href="{% url 'main' %}">Back to Home</a>
+    </div>
+</header>
+
+<div class="container">
+<h2>Post Drive Notice</h2>
+
+<form method="POST" action="{% url 'post_drives' %}">
+{% csrf_token %}
+
+    <label>Company Name</label>
+    <input type="text" name="company_name" required>
+
+    <label>Eligibility Criteria</label>
+    <input type="text" name="eligibility" required>
+    <label>Eligible Branches</label>
+    <div class="branch-box">
+        <label><input type="checkbox" name="eligible_branches[]" value="CSE">CSE</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="CSM">CSM</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="CAD">CAD</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="AIML">AIML</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="IT">IT</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="ECE">ECE</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="EEE">EEE</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="MECH">MECH</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="CIVIL">CIVIL</label>
+        <label><input type="checkbox" name="eligible_branches[]" value="All Branches">All Branches</label>
+    </div>
+
+    <label>Job Type</label>
+        <select name="job_type" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Internship">Internship</option>
+            <option value="Full Time">Full Time</option>
+        </select>
+    <label>Job Role</label>
+    <input type="text" name="job_role" required>
+    <label>Package</label>
+    <input type="text" name="package" required>
+    <label>Process</label>
+    <textarea name="process" required></textarea>
+    <label>Last Date to Apply</label>
+    <input type="date" name="last_date" required>
+    <label>Location</label>
+    <input type="text" name="location" required>
+    <button type="submit">Post Drive</button>
+</form>
+</div>
+<footer>@ 2026 Smart Career | All Rights Reserved</footer>
+</body>
+</html>

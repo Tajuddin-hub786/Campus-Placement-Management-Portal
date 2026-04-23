@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: #1b365d;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+/* ===== PROFILE CONTAINER ===== */
+.profile-container {
+    width: 90%;          /* full width for most screens */
+    max-width: 900px;    /* limit maximum width */
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* ===== TITLE ===== */
+.profile-container h2 {
+    text-align: center;
+    color: #1b365d;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+/* ===== PROFILE ROW ===== */
+.profile-row {
+    display: flex;
+    flex-direction: column; /* label on top, value below */
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.profile-label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.profile-value {
+    color: #555;
+    font-size: 16px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    margin-top: auto;
+    background: #1b365d;
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+    .profile-container {
+        width: 95%;
+        padding: 20px;
+    }
+    .profile-row {
+        padding: 10px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>Smart Career - Student</h1>
+    <nav>
+        <a href="{% url 'student_dashboard' %}">Dashboard</a>
+        <a href="{% url 'main' %}">Back to Home</a>
+    </nav>
+</header>
+
+<!-- PROFILE DETAILS -->
+<div class="profile-container">
+    <h2>My Profile</h2>
+
+    <div class="profile-row">
+        <div class="profile-label">Full Name</div>
+        <div class="profile-value">{{ student.full_name }}</div>
+    </div>
+
+    <div class="profile-row">
+        <div class="profile-label">Email</div>
+        <div class="profile-value">{{ student.email }}</div>
+    </div>
+
+    <div class="profile-row">
+        <div class="profile-label">Roll Number</div>
+        <div class="profile-value">{{ student.roll_number }}</div>
+    </div>
+
+    <div class="profile-row">
+        <div class="profile-label">Department</div>
+        <div class="profile-value">{{ student.department }}</div>
+    </div>
+
+    <div class="profile-row">
+        <div class="profile-label">Year</div>
+        <div class="profile-value">{{ student.year }}</div>
+    </div>
+
+    <div class="profile-row">
+        <div class="profile-label">Phone Number</div>
+        <div class="profile-value">{{ student.phone }}</div>
+    </div>
+
+    <div class="profile-row">
+        <div class="profile-label">Gender</div>
+        <div class="profile-value">{{ student.gender }}</div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 Smart Career | All Rights Reserved
+</footer>
+
+</body>
+</html>

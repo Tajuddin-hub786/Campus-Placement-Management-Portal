@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Career</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== HEADER ===== */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:#1b365d;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+}
+
+.logo{
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* ===== LOGIN DROPDOWN ===== */
+.dropdown{
+    position:relative;
+    display:inline-block;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background:white;
+    min-width:160px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.2);
+    z-index:999;
+}
+
+.dropdown-content a{
+    color:black;
+    padding:10px;
+    display:block;
+    text-decoration:none;
+}
+
+.dropdown-content a:hover{
+    background:#f2f2f2;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+/* ===== HERO IMAGE ===== */
+.hero{
+    height:100vh;
+    background: url("{% static 'frontend/images/main_bg.jpg' %}") no-repeat center;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-text{
+    background:rgba(0,0,0,0.6);
+    padding:40px 60px;
+    border-radius:10px;
+    color:white;
+}
+
+.hero-text h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.hero-text p{
+    font-size:18px;
+}
+
+/* ===== CARDS ===== */
+.cards{
+    background:#f2f2f2;
+    padding:80px 40px;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+}
+
+.card{
+    width:370px;
+    height:300px;
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card h3{
+    color:#1b365d;
+    margin-bottom:15px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:#1b365d;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo" style="font-size:x-large;">Smart Career</div>
+    <nav>
+        <a href="#about">About Us</a>
+
+        <div class="dropdown">
+            <a id="loginBtn">Login ▾</a>
+            <div class="dropdown-content" id="loginMenu">
+                <a href="{% url 'student_login' %}">Student</a>
+                <a href="{% url 'admin_login' %}">Admin</a>
+            </div>
+        </div>
+
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Campus Placement Management Portal</h1>
+        <p>
+            A centralized platform to manage campus placement activities.
+            Students can apply for jobs, track placement status, and administrators
+            can manage recruitment efficiently.
+        </p>
+    </div>
+</section>
+
+<!-- CARDS -->
+<section class="cards">
+    <div class="card" id="about">
+        <h3>About Us</h3>
+        <p>
+            Smart Career Portal is a web-based platform designed to manage campus placement activities efficiently.
+            It allows students to apply for jobs, track placement status, and stay updated on notifications.
+            <br><br>
+            Administrators can manage student records, companies, and placement drives with ease.
+            <br><br>
+            The system ensures transparency, reduces manual work, and improves coordination between students and recruiters.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Login</h3>
+        <p>
+            Admin Login: Manage students, companies, and placement drives efficiently.
+            <br><br>
+            Student Login: Apply for jobs, track placement status, and stay updated with notifications.
+            <br><br>
+            The portal provides secure access for both administrators and students with an easy-to-use interface.
+        </p>
+    </div>
+
+    <div class="card" id="contact">
+        <h3>Contact Us</h3>
+        <p>
+            Email: support@smartcareer.com<br>
+            Phone: +91 98765 43210
+            <br><br>
+            For any queries or support regarding campus placements, students and companies can reach us through email or phone.
+            <br><br>
+            We are committed to providing timely assistance and resolving issues efficiently.
+        </p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Smart Career | All Rights Reserved
+</footer>
+
+<!-- ===== JAVASCRIPT FOR LOGIN CLICK ===== -->
+<script>
+    const loginBtn = document.getElementById("loginBtn");
+    const loginMenu = document.getElementById("loginMenu");
+
+    loginBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        loginMenu.classList.toggle("show");
+    });
+
+    window.addEventListener("click", function (e) {
+        if (!e.target.closest(".dropdown")) {
+            loginMenu.classList.remove("show");
+        }
+    });
+</script>
+
+</body>
+</html>

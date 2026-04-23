@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applied Students</title>
+<style>
+    body{ 
+        margin:0; 
+        font-family: Arial, sans-serif; 
+        background:#f5f6fa; 
+    }
+    header{ 
+        background:#1b365d; 
+        color:white; 
+        padding:15px 30px; 
+        display:flex; 
+        justify-content:space-between; 
+        align-items:center; 
+    }
+    header h1{ 
+        margin:0; 
+        font-size:22px; 
+    }
+    header a{ 
+        color:white; 
+        text-decoration:none; 
+        margin-left:15px; 
+        font-weight:bold; 
+    }
+    .container{ 
+        max-width:1200px; 
+        margin:40px auto; 
+        background:white; 
+        padding:25px; 
+        border-radius:12px; 
+        box-shadow:0 0 20px rgba(0,0,0,0.2); 
+        overflow-x: hidden; 
+    }
+    h2{ 
+        text-align:center; 
+        color:#1b365d; 
+        margin-bottom:25px; 
+    }
+    table{ 
+        width:100%; 
+        border-collapse:collapse; 
+        font-size:14px; 
+    }
+    th, td{ 
+        padding:10px; 
+        border:1px solid #ccc; 
+        text-align:center; 
+    }
+    th{ 
+        background:#1b365d; 
+        color:white; 
+    }
+    .link{ 
+        color:#1b365d; 
+        font-weight:bold; 
+        text-decoration:none; 
+        }
+</style>
+</head>
+<body>
+<header>
+    <h1>Smart Career – Admin</h1>
+    <div>
+        <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        <a href="{% url 'main' %}">Back to Home</a>
+    </div>
+</header>
+<div class="container">
+    <h2>Applied Students</h2>
+    <table>
+        <tr>
+            <th>Company</th><th>Name</th><th>Email</th><th>Reg No</th><th>Branch</th><th>B.Tech %</th><th>Inter %</th><th>SSC %</th><th>Resume</th><th>Image</th>
+        </tr>
+        {% for app in apps %}
+        <tr>
+            <td>{{ app.drive.company_name }}</td>
+            <td>{{ app.name }}</td>
+            <td>{{ app.email }}</td>
+            <td>{{ app.reg_no }}</td>
+            <td>{{ app.branch }}</td>
+            <td>{{ app.btech_percent }}%</td>
+            <td>{{ app.inter_percent }}%</td>
+            <td>{{ app.ssc_percent }}%</td>
+            <td><a href="{{ app.resume.url }}" class="link" target="_blank">View</a></td>
+            <td><a href="{{ app.profile_image.url }}" class="link" target="_blank">View</a></td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="10">No applications received yet.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
